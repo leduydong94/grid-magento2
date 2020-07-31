@@ -8,7 +8,7 @@ use Magento\Framework\UrlInterface;
 class Actions extends Column {
     /** Url path */
     const URL_PATH_EDIT = 'hello/posts/edit';
-    const URL_PATH_DELETE = 'hello/posts/delete';
+    const URL_PATH_ROW_DELETE = 'hello/posts/rowdelete';
     /** @var UrlBuilder */
     protected $actionUrlBuilder;
     /** @var UrlInterface */
@@ -26,7 +26,8 @@ class Actions extends Column {
         $this->actionUrlBuilder = $actionUrlBuilder;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
-    /**
+    /**ar_dump($item['id']);
+//                        exit;
      * Prepare Data Source
      *
      * @param array $dataSource
@@ -38,7 +39,7 @@ class Actions extends Column {
                 $name = $this->getData('name');
                 if (isset($item['id'])) {
                     $item[$name]['edit'] = ['href' => $this->urlBuilder->getUrl(self::URL_PATH_EDIT, ['id' => $item['id']]), 'label' => __('Edit') ];
-                    $item[$name]['delete'] = ['href' => $this->urlBuilder->getUrl(self::URL_PATH_DELETE), 'label' => __('Delete') ];
+                    $item[$name]['delete'] = ['href' => $this->urlBuilder->getUrl(self::URL_PATH_ROW_DELETE,['id' => $item['id']]), 'label' => __('Delete') ];
                 }
             }
         }
